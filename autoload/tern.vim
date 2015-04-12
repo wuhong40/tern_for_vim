@@ -11,8 +11,12 @@ elseif has('python3')
   execute 'py3file ' . fnameescape(s:script)
 endif
 
+if !exists('tern_nodejs_cmd')
+    let tern_nodejs_cmd = "node"
+endif
+
 if !exists('g:tern#command')
-  let g:tern#command = ["nodejs", expand('<sfile>:h') . '/../node_modules/tern/bin/tern', '--no-port-file']
+  let g:tern#command = [tern_nodejs_cmd, expand('<sfile>:h') . '/../node_modules/tern/bin/tern', '--no-port-file']
 endif
 
 if !exists('g:tern#arguments')
